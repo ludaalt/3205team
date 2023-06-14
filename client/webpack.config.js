@@ -9,14 +9,28 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js",
   },
+  // externals: {
+  //   react: "React",
+  // },
+  // proxy: {
+  //   "/api": "http://localhost:3001",
+  // },
   resolve: {
     extensions: [".js", ".jsx"],
   },
   devServer: {
     port: 3000,
+
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        router: () => "http://localhost:3001",
+        //  logLevel: 'debug' /*optional*/
+      },
+    },
   },
   plugins: [
-    new HTMLWebpackPlugin({ template: "./src/index.html" }),
+    new HTMLWebpackPlugin({ template: "./public/index.html" }),
     new CleanWebpackPlugin(),
   ],
 
