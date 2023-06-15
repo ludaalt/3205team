@@ -15,7 +15,8 @@
     "@babel/polyfill": "^7.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^6.0.0-rc.3"
+    "styled-components": "^6.0.0-rc.3",
+    "webpack": "^5.86.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
