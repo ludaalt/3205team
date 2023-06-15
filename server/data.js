@@ -1,4 +1,4 @@
-const dataForCheck = [
+export const dataForCheck = [
   {
     email: "jim@gmail.com",
     number: "221122",
@@ -28,5 +28,3 @@ const dataForCheck = [
     number: "822286",
   },
 ];
-
-module.exports = { ...dataForCheck };
