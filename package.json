@@ -1,0 +1,25 @@
+{
+  "name": "3205team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludaalt/3205team.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ludaalt/3205team/issues"
+  },
+  "homepage": "https://github.com/ludaalt/3205team#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
