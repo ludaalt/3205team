@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { sendData } from "./services/sendData";
+import { maskString } from "./services/maskString";
 
 const MainContainer = styled.div`
-  border: 3px solid red;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   form {
     display: flex;
@@ -25,20 +26,19 @@ const App = () => {
   const [userData, setUserData] = useState({ email: "", number: "" });
   const [foundUsers, setFoundUsers] = useState([]);
 
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     sendData(userData).then((res) => {
       setFoundUsers((prev) => [...prev, res]);
+      setLoading(false);
     });
 
     setUserData({ email: "", number: "" });
   };
-
-  console.log(foundUsers);
 
   return (
     <MainContainer>
@@ -53,17 +53,24 @@ const App = () => {
           value={userData.email}
         />
         <input
+          maxLength="8"
           type="text"
           placeholder="Enter number..."
           onChange={(e) =>
-            setUserData((state) => ({ ...state, number: e.target.value }))
+            setUserData((state) => ({
+              ...state,
+              number: e.target.value,
+            }))
           }
-          value={userData.number}
+          value={userData.number && maskString(userData.number)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>
       </form>
-      {foundUsers &&
-        foundUsers.map((item, index) => (
+      <p>{loading ? "Please wait..." : null}</p>
+      {foundUsers[0] &&
+        foundUsers[0].map((item, index) => (
           <li key={item.number || index}>
             <p>{item.email}</p>
             <p>{item.number}</p>
