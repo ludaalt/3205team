@@ -1,11 +1,14 @@
-const dataForCheck = require("../data");
+import { dataForCheck } from "../data";
+import { IUser } from "../types/types";
 
-const findUsers = (data) => {
+const findUsers = (data: IUser) => {
   const userEmail = data.email;
   const userNumber = data.number;
   const isUserNumberExist = !!userNumber;
 
-  let result = [];
+  let result: IUser[] = [];
+
+  let item: keyof typeof dataForCheck;
 
   for (item in dataForCheck) {
     if (dataForCheck[item].email === userEmail) {
